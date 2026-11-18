@@ -1,522 +1,552 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Unidad 3 - Frontend OAuth2</title>
 
     <!-- ARCHIVO DE ESTILOS -->
-    <link rel="stylesheet" href="css/styles.css">
-</head>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <h1>Unidad 3 · Microservicios con OAuth2</h1>
-        <span id="sessionPill" class="pill">Sin sesión</span>
+      <h1>Unidad 3 · Microservicios con OAuth2</h1>
+      <span id="sessionPill" class="pill">Sin sesión</span>
     </header>
 
     <main>
+      <!-- LOGIN -->
+      <section class="card" id="loginCard">
+        <h2>1. Iniciar sesión</h2>
 
-        <!-- LOGIN -->
-        <section class="card" id="loginCard">
-            <h2>1. Iniciar sesión</h2>
-
-            <form id="loginForm" autocomplete="off">
-                <div class="login-grid">
-                    <div>
-                        <label for="username">Usuario</label>
-                        <input id="username" value="user" required>
-                    </div>
-
-                    <div>
-                        <label for="password">Contraseña</label>
-                        <input id="password" type="password" value="pass123" required>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <button type="submit" id="loginBtn">Login</button>
-                </div>
-            </form>
-
-            <div id="loginMsg" class="msg"></div>
-        </section>
-
-        <!-- TOKEN -->
-        <section class="card hidden" id="tokenCard">
-            <h2>2. Token obtenido</h2>
-
-            <label>access_token (JWT)</label>
-            <textarea id="tokenBox" readonly></textarea>
-
-            <div class="meta" id="tokenMeta"></div>
-
-            <details>
-                <summary class="meta" style="cursor:pointer">
-                    Ver contenido (payload) del token
-                </summary>
-                <pre id="tokenPayload"></pre>
-            </details>
-
-            <div class="row">
-                <button class="secondary" id="toggleToken" type="button">
-                    Mostrar token
-                </button>
-
-                <button class="secondary" id="logoutBtn" type="button">
-                    Cerrar sesión (borrar token)
-                </button>
-            </div>
-        </section>
-
-        <!-- CONSULTA DE DATOS -->
-        <section class="card">
-            <h2>3. Consultar datos vía Gateway</h2>
-
-            <div class="meta">
-                Gateway: <code id="apiUrlLabel"></code>
+        <form id="loginForm" autocomplete="off">
+          <div class="login-grid">
+            <div>
+              <label for="username">Usuario</label>
+              <input id="username" value="user" required />
             </div>
 
-            <div class="row">
-                <button id="loadA" type="button">
-                    Listar ENTITYA
-                </button>
-
-                <button id="loadB" type="button">
-                    Listar ENTITYB
-                </button>
-
-                <button id="loadBoth" type="button">
-                    Listar ambas
-                </button>
-
-                <button id="noToken" type="button" class="danger">
-                    Probar SIN token (401)
-                </button>
+            <div>
+              <label for="password">Contraseña</label>
+              <input id="password" type="password" value="pass123" required />
             </div>
+          </div>
 
-            <div id="dataMsg" class="msg"></div>
-            <div id="results"></div>
-        </section>
+          <div class="row">
+            <button type="submit" id="loginBtn">Login</button>
+          </div>
+        </form>
 
-        <!-- CRUD ENTITYA (M4) -->
-        <section class="card">
-            <h2>4. Administrar ENTITYA</h2>
+        <div id="loginMsg" class="msg"></div>
+      </section>
 
-            <form id="crudAForm" autocomplete="off">
-                <input id="crudAId" type="hidden">
-                <label for="crudAName">nombreA</label>
-                <input id="crudAName" maxlength="120" required>
+      <!-- TOKEN -->
+      <section class="card hidden" id="tokenCard">
+        <h2>2. Token obtenido</h2>
 
-                <div class="row">
-                    <button id="crudASubmit" type="submit">Crear ENTITYA</button>
-                    <button id="crudACancel" class="secondary hidden" type="button">
-                        Cancelar edición
-                    </button>
-                    <button id="crudALoad" class="secondary" type="button">
-                        Actualizar lista
-                    </button>
-                </div>
-            </form>
+        <label>access_token (JWT)</label>
+        <textarea id="tokenBox" readonly></textarea>
 
-            <div id="crudAMsg" class="msg"></div>
-            <div id="crudAResults"></div>
-        </section>
+        <div class="meta" id="tokenMeta"></div>
 
+        <details>
+          <summary class="meta" style="cursor: pointer">
+            Ver contenido (payload) del token
+          </summary>
+          <pre id="tokenPayload"></pre>
+        </details>
+
+        <div class="row">
+          <button class="secondary" id="toggleToken" type="button">
+            Mostrar token
+          </button>
+
+          <button class="secondary" id="logoutBtn" type="button">
+            Cerrar sesión (borrar token)
+          </button>
+        </div>
+      </section>
+
+      <!-- CRUD ENTITY-A (M4) -->
+      <section class="card">
+        <h2>2. Administrar ENTITY-A</h2>
+
+        <form id="crudAForm" autocomplete="off">
+          <input id="crudAId" type="hidden" />
+          <label for="crudAName">nombreA</label>
+          <input id="crudAName" maxlength="120" required />
+
+          <div class="row">
+            <button id="crudASubmit" type="submit">Crear ENTITYA</button>
+            <button id="crudACancel" class="secondary hidden" type="button">
+              Cancelar edición
+            </button>
+            <button id="crudALoad" class="secondary" type="button">
+              Actualizar lista
+            </button>
+          </div>
+        </form>
+
+        <div id="crudAMsg" class="msg"></div>
+        <div id="crudAResults"></div>
+      </section>
+
+      <!-- CRUD ENTITY-B + FEIGN -->
+      <section class="card">
+        <h2>3. Administrar ENTITY-B + Feign</h2>
+
+        <p class="meta">
+          Gestión de ENTITY-B y relaciones con ENTITY-A mediante OpenFeign y
+          autenticación JWT.
+        </p>
+
+        <form id="crudBForm" autocomplete="off">
+          <input id="crudBId" type="hidden" />
+
+          <label for="crudBName">nombreB</label>
+          <input
+            id="crudBName"
+            type="text"
+            maxlength="120"
+            placeholder="Nombre de la entidad B"
+            required
+          />
+
+          <label for="crudBAIds">IDs relacionados de ENTITY-A</label>
+          <input id="crudBAIds" type="text" placeholder="Ejemplo: 1, 2, 3" />
+
+          <p class="meta">
+            Introduce los IDs de ENTITY-A separados por comas. Ejemplo: 1, 2, 3.
+          </p>
+
+          <div class="row">
+            <button id="crudBSubmit" type="submit">Crear ENTITY-B</button>
+
+            <button id="crudBCancel" class="secondary hidden" type="button">
+              Cancelar edición
+            </button>
+
+            <button id="crudBLoad" class="secondary" type="button">
+              Actualizar lista
+            </button>
+          </div>
+        </form>
+
+        <div id="crudBMsg" class="msg"></div>
+
+        <h3>Registros de ENTITY-B</h3>
+
+        <div id="crudBResults"></div>
+      </section>
+
+      <!-- CONSULTA DE DATOS GATEWAY-->
+      <section class="card">
+        <h2>4. Consultar datos vía Gateway</h2>
+
+        <div class="meta">Gateway: <code id="apiUrlLabel"></code></div>
+
+        <div class="row">
+          <button id="loadA" type="button">Listar ENTITYA</button>
+
+          <button id="loadB" type="button">Listar ENTITYB</button>
+
+          <button id="loadBoth" type="button">Listar ambas</button>
+
+          <button id="noToken" type="button" class="danger">
+            Probar SIN token (401)
+          </button>
+        </div>
+
+        <div id="dataMsg" class="msg"></div>
+        <div id="results"></div>
+      </section>
     </main>
 
     <!-- ARCHIVO JAVASCRIPT DE API -->
     <script src="js/api.js"></script>
 
     <script>
-        // ================= CONFIGURACIÓN =================
+      // ================= CONFIGURACIÓN =================
 
-        const CONFIG = {
-            AUTH_URL: "http://localhost:9000",
-            API_URL: "http://localhost:8083",
-            CLIENT_ID: "frontend",
-            CLIENT_SECRET: "frontend-secret",
-            SCOPE: "read"
-        };
+      const CONFIG = {
+        AUTH_URL: "http://localhost:9000",
+        API_URL: "http://localhost:8083",
+        CLIENT_ID: "frontend",
+        CLIENT_SECRET: "frontend-secret",
+        SCOPE: "read",
+      };
 
-        // ================= UTILIDADES =================
+      // ================= UTILIDADES =================
 
-        const $ = (id) => document.getElementById(id);
+      const $ = (id) => document.getElementById(id);
 
-        const getToken = () => {
-            try {
-                return sessionStorage.getItem(TOKEN_KEY);
-            } catch (e) {
-                return null;
-            }
-        };
+      const getToken = () => {
+        try {
+          return sessionStorage.getItem(TOKEN_KEY);
+        } catch (e) {
+          return null;
+        }
+      };
 
-        const setToken = (token) => {
-            try {
-                sessionStorage.setItem(TOKEN_KEY, token);
-            } catch (e) {
-                console.error("No se pudo guardar el token:", e);
-            }
-        };
+      const setToken = (token) => {
+        try {
+          sessionStorage.setItem(TOKEN_KEY, token);
+        } catch (e) {
+          console.error("No se pudo guardar el token:", e);
+        }
+      };
 
-        const clearToken = () => {
-            try {
-                sessionStorage.removeItem(TOKEN_KEY);
-            } catch (e) {
-                console.error("No se pudo eliminar el token:", e);
-            }
-        };
+      const clearToken = () => {
+        try {
+          sessionStorage.removeItem(TOKEN_KEY);
+        } catch (e) {
+          console.error("No se pudo eliminar el token:", e);
+        }
+      };
 
-        function decodeJwt(token) {
-            try {
-                const part = token.split(".")[1]
-                    .replace(/-/g, "+")
-                    .replace(/_/g, "/");
+      function decodeJwt(token) {
+        try {
+          const part = token
+            .split(".")[1]
+            .replace(/-/g, "+")
+            .replace(/_/g, "/");
 
-                const base64 = part.padEnd(
-                    part.length + (4 - part.length % 4) % 4,
-                    "="
-                );
+          const base64 = part.padEnd(
+            part.length + ((4 - (part.length % 4)) % 4),
+            "=",
+          );
 
-                return JSON.parse(
-                    decodeURIComponent(
-                        Array.from(atob(base64))
-                            .map(c => "%" + c.charCodeAt(0)
-                                .toString(16).padStart(2, "0"))
-                            .join("")
-                    )
-                );
-            } catch (e) {
-                return null;
-            }
+          return JSON.parse(
+            decodeURIComponent(
+              Array.from(atob(base64))
+                .map((c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"))
+                .join(""),
+            ),
+          );
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function showMsg(el, text, kind) {
+        el.textContent = text;
+        el.className = "msg show " + kind;
+      }
+
+      function hideMsg(el) {
+        el.className = "msg";
+        el.textContent = "";
+      }
+
+      // ================= SESIÓN =================
+
+      let tokenVisible = false;
+
+      function maskToken(token) {
+        return (
+          token.slice(0, 10) + "•••••••••••••••••••••••••••••• (token oculto)"
+        );
+      }
+
+      function refreshSessionUI() {
+        const token = getToken();
+        const pill = $("sessionPill");
+
+        if (!token) {
+          pill.textContent = "Sin sesión";
+          pill.className = "pill";
+          $("tokenCard").classList.add("hidden");
+          return;
         }
 
-        function showMsg(el, text, kind) {
-            el.textContent = text;
-            el.className = "msg show " + kind;
+        const payload = decodeJwt(token);
+
+        pill.textContent = "Sesión activa";
+        pill.className = "pill on";
+
+        $("tokenCard").classList.remove("hidden");
+
+        $("tokenBox").value = tokenVisible ? token : maskToken(token);
+
+        $("toggleToken").textContent = tokenVisible
+          ? "Ocultar token"
+          : "Mostrar token";
+
+        $("tokenPayload").textContent = payload
+          ? JSON.stringify(payload, null, 2)
+          : "(no se pudo decodificar)";
+
+        if (payload && payload.exp) {
+          const exp = new Date(payload.exp * 1000);
+          const expired = exp.getTime() < Date.now();
+
+          $("tokenMeta").textContent =
+            (expired ? "EXPIRADO el " : "Expira el ") + exp.toLocaleString();
+        } else {
+          $("tokenMeta").textContent = "";
         }
+      }
 
-        function hideMsg(el) {
-            el.className = "msg";
-            el.textContent = "";
-        }
+      $("toggleToken").addEventListener("click", () => {
+        tokenVisible = !tokenVisible;
+        refreshSessionUI();
+      });
 
-        // ================= SESIÓN =================
+      // ================= LOGIN =================
 
-        let tokenVisible = false;
+      $("loginForm").addEventListener("submit", async (ev) => {
+        ev.preventDefault();
 
-        function maskToken(token) {
-            return token.slice(0, 10) +
-                "•••••••••••••••••••••••••••••• (token oculto)";
-        }
+        hideMsg($("loginMsg"));
+        $("loginBtn").disabled = true;
 
-        function refreshSessionUI() {
-            const token = getToken();
-            const pill = $("sessionPill");
+        try {
+          const body = new URLSearchParams({
+            grant_type: "password",
+            username: $("username").value.trim(),
+            password: $("password").value,
+            scope: CONFIG.SCOPE,
+            client_id: CONFIG.CLIENT_ID,
+            client_secret: CONFIG.CLIENT_SECRET,
+          });
 
-            if (!token) {
-                pill.textContent = "Sin sesión";
-                pill.className = "pill";
-                $("tokenCard").classList.add("hidden");
-                return;
-            }
+          const res = await fetch(CONFIG.AUTH_URL + "/oauth2/token", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: body,
+          });
 
-            const payload = decodeJwt(token);
+          const data = await res.json().catch(() => ({}));
 
-            pill.textContent = "Sesión activa";
-            pill.className = "pill on";
-
-            $("tokenCard").classList.remove("hidden");
-
-            $("tokenBox").value = tokenVisible
-                ? token
-                : maskToken(token);
-
-            $("toggleToken").textContent = tokenVisible
-                ? "Ocultar token"
-                : "Mostrar token";
-
-            $("tokenPayload").textContent = payload
-                ? JSON.stringify(payload, null, 2)
-                : "(no se pudo decodificar)";
-
-            if (payload && payload.exp) {
-                const exp = new Date(payload.exp * 1000);
-                const expired = exp.getTime() < Date.now();
-
-                $("tokenMeta").textContent =
-                    (expired ? "EXPIRADO el " : "Expira el ") +
-                    exp.toLocaleString();
-            } else {
-                $("tokenMeta").textContent = "";
-            }
-        }
-
-        $("toggleToken").addEventListener("click", () => {
-            tokenVisible = !tokenVisible;
-            refreshSessionUI();
-        });
-
-        // ================= LOGIN =================
-
-        $("loginForm").addEventListener("submit", async (ev) => {
-            ev.preventDefault();
-
-            hideMsg($("loginMsg"));
-            $("loginBtn").disabled = true;
-
-            try {
-                const body = new URLSearchParams({
-                    grant_type: "password",
-                    username: $("username").value.trim(),
-                    password: $("password").value,
-                    scope: CONFIG.SCOPE,
-                    client_id: CONFIG.CLIENT_ID,
-                    client_secret: CONFIG.CLIENT_SECRET
-                });
-
-                const res = await fetch(
-                    CONFIG.AUTH_URL + "/oauth2/token",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        body: body
-                    }
-                );
-
-                const data = await res.json().catch(() => ({}));
-
-                if (!res.ok || !data.access_token) {
-                    showMsg(
-                        $("loginMsg"),
-                        "Login fallido (" + res.status + "): " +
-                        (data.error_description ||
-                            data.error ||
-                            "credenciales incorrectas"),
-                        "err"
-                    );
-                    return;
-                }
-
-                setToken(data.access_token);
-                tokenVisible = false;
-
-                showMsg(
-                    $("loginMsg"),
-                    "Login correcto. Token recibido (expira en " +
-                    (data.expires_in || "?") + " s).",
-                    "ok"
-                );
-
-                refreshSessionUI();
-
-            } catch (e) {
-                showMsg(
-                    $("loginMsg"),
-                    "No se pudo conectar con " + CONFIG.AUTH_URL +
-                    ". Revisa que AuthServer esté funcionando y que permita CORS para este origen (" +
-                    location.origin + ").",
-                    "err"
-                );
-            } finally {
-                $("loginBtn").disabled = false;
-            }
-        });
-
-        // ================= CERRAR SESIÓN =================
-
-        $("logoutBtn").addEventListener("click", () => {
-            clearToken();
-            tokenVisible = false;
-
-            refreshSessionUI();
-
-            hideMsg($("loginMsg"));
-            $("results").innerHTML = "";
-            hideMsg($("dataMsg"));
-        });
-
-        // ================= TABLAS =================
-
-        function renderTable(rows) {
-            if (!Array.isArray(rows) || rows.length === 0) {
-                const p = document.createElement("div");
-                p.className = "meta";
-                p.textContent = "Sin registros.";
-                return p;
-            }
-
-            const cols = [];
-
-            rows.forEach(row => {
-                Object.keys(row).forEach(key => {
-                    if (!cols.includes(key)) {
-                        cols.push(key);
-                    }
-                });
-            });
-
-            const table = document.createElement("table");
-            const thead = table.createTHead().insertRow();
-
-            cols.forEach(col => {
-                const th = document.createElement("th");
-                th.textContent = col;
-                thead.appendChild(th);
-            });
-
-            const tbody = table.createTBody();
-
-            rows.forEach(row => {
-                const tr = tbody.insertRow();
-
-                cols.forEach(col => {
-                    const value = row[col];
-
-                    tr.insertCell().textContent =
-                        Array.isArray(value)
-                            ? value.join(", ")
-                            : (value !== null && typeof value === "object"
-                                ? JSON.stringify(value)
-                                : (value ?? ""));
-                });
-            });
-
-            return table;
-        }
-
-        // ================= RESULTADOS =================
-
-        function renderResult(label, path, result) {
-            const wrap = document.createElement("div");
-            const title = document.createElement("div");
-
-            title.className = "result-title";
-
-            const badge = document.createElement("span");
-            badge.className = "badge " + (result.ok ? "ok" : "err");
-            badge.textContent = result.status;
-
-            title.append(
-                label + " (GET " + path + ") ",
-                badge,
-                result.sentToken ? " · con token" : " · sin token"
+          if (!res.ok || !data.access_token) {
+            showMsg(
+              $("loginMsg"),
+              "Login fallido (" +
+                res.status +
+                "): " +
+                (data.error_description ||
+                  data.error ||
+                  "credenciales incorrectas"),
+              "err",
             );
+            return;
+          }
 
-            wrap.appendChild(title);
+          setToken(data.access_token);
+          tokenVisible = false;
 
-            if (result.ok) {
-                wrap.appendChild(renderTable(result.data));
-            } else {
-                const pre = document.createElement("pre");
+          showMsg(
+            $("loginMsg"),
+            "Login correcto. Token recibido (expira en " +
+              (data.expires_in || "?") +
+              " s).",
+            "ok",
+          );
 
-                pre.textContent =
-                    typeof result.data === "string"
-                        ? result.data
-                        : JSON.stringify(result.data, null, 2) ||
-                          "(sin cuerpo en la respuesta)";
-
-                wrap.appendChild(pre);
-            }
-
-            return wrap;
+          refreshSessionUI();
+        } catch (e) {
+          showMsg(
+            $("loginMsg"),
+            "No se pudo conectar con " +
+              CONFIG.AUTH_URL +
+              ". Revisa que AuthServer esté funcionando y que permita CORS para este origen (" +
+              location.origin +
+              ").",
+            "err",
+          );
+        } finally {
+          $("loginBtn").disabled = false;
         }
+      });
 
-        // ================= CARGAR DATOS =================
+      // ================= CERRAR SESIÓN =================
 
-        async function load(entities, opts = {}) {
-            const box = $("results");
+      $("logoutBtn").addEventListener("click", () => {
+        clearToken();
+        tokenVisible = false;
 
-            box.innerHTML = "";
-            hideMsg($("dataMsg"));
-
-            for (const ent of entities) {
-                const path = "/api/" + ent;
-
-                try {
-                    const result = await window.callApi(path, opts);
-
-                    box.appendChild(
-                        renderResult(ent, path, result)
-                    );
-
-                    if (result.status === 401) {
-                        const token = getToken();
-                        const payload = token ? decodeJwt(token) : null;
-
-                        const expired =
-                            payload &&
-                            payload.exp &&
-                            payload.exp * 1000 < Date.now();
-
-                        if (!result.sentToken) {
-                            showMsg(
-                                $("dataMsg"),
-                                "401 No autorizado: la petición se envió sin token.",
-                                "warn"
-                            );
-                        } else if (expired) {
-                            showMsg(
-                                $("dataMsg"),
-                                "401 No autorizado: el token expiró. Vuelve a iniciar sesión.",
-                                "warn"
-                            );
-
-                            clearToken();
-                            refreshSessionUI();
-                        } else {
-                            showMsg(
-                                $("dataMsg"),
-                                "401 No autorizado: el token no fue aceptado.",
-                                "warn"
-                            );
-                        }
-                    }
-
-                } catch (e) {
-                    showMsg(
-                        $("dataMsg"),
-                        "No se pudo conectar con " +
-                        CONFIG.API_URL +
-                        ". Revisa que el Gateway esté arriba y que tenga CORS configurado para " +
-                        location.origin + ".",
-                        "err"
-                    );
-
-                    return;
-                }
-            }
-        }
-
-        // ================= EVENTOS DE BOTONES =================
-
-        $("loadA").addEventListener("click", () => {
-            load(["ENTITYA"]);
-        });
-
-        $("loadB").addEventListener("click", () => {
-            load(["ENTITYB"]);
-        });
-
-        $("loadBoth").addEventListener("click", () => {
-            load(["ENTITYA", "ENTITYB"]);
-        });
-
-        $("noToken").addEventListener("click", () => {
-            load(["ENTITYA"], { useToken: false });
-        });
-
-        // ================= INICIO =================
-
-        $("apiUrlLabel").textContent = CONFIG.API_URL;
         refreshSessionUI();
 
+        hideMsg($("loginMsg"));
+        $("results").innerHTML = "";
+        hideMsg($("dataMsg"));
+      });
+
+      // ================= TABLAS =================
+
+      function renderTable(rows) {
+        if (!Array.isArray(rows) || rows.length === 0) {
+          const p = document.createElement("div");
+          p.className = "meta";
+          p.textContent = "Sin registros.";
+          return p;
+        }
+
+        const cols = [];
+
+        rows.forEach((row) => {
+          Object.keys(row).forEach((key) => {
+            if (!cols.includes(key)) {
+              cols.push(key);
+            }
+          });
+        });
+
+        const table = document.createElement("table");
+        const thead = table.createTHead().insertRow();
+
+        cols.forEach((col) => {
+          const th = document.createElement("th");
+          th.textContent = col;
+          thead.appendChild(th);
+        });
+
+        const tbody = table.createTBody();
+
+        rows.forEach((row) => {
+          const tr = tbody.insertRow();
+
+          cols.forEach((col) => {
+            const value = row[col];
+
+            tr.insertCell().textContent = Array.isArray(value)
+              ? value.join(", ")
+              : value !== null && typeof value === "object"
+                ? JSON.stringify(value)
+                : (value ?? "");
+          });
+        });
+
+        return table;
+      }
+
+      // ================= RESULTADOS =================
+
+      function renderResult(label, path, result) {
+        const wrap = document.createElement("div");
+        const title = document.createElement("div");
+
+        title.className = "result-title";
+
+        const badge = document.createElement("span");
+        badge.className = "badge " + (result.ok ? "ok" : "err");
+        badge.textContent = result.status;
+
+        title.append(
+          label + " (GET " + path + ") ",
+          badge,
+          result.sentToken ? " · con token" : " · sin token",
+        );
+
+        wrap.appendChild(title);
+
+        if (result.ok) {
+          wrap.appendChild(renderTable(result.data));
+        } else {
+          const pre = document.createElement("pre");
+
+          pre.textContent =
+            typeof result.data === "string"
+              ? result.data
+              : JSON.stringify(result.data, null, 2) ||
+                "(sin cuerpo en la respuesta)";
+
+          wrap.appendChild(pre);
+        }
+
+        return wrap;
+      }
+
+      // ================= CARGAR DATOS =================
+
+      async function load(entities, opts = {}) {
+        const box = $("results");
+
+        box.innerHTML = "";
+        hideMsg($("dataMsg"));
+
+        for (const ent of entities) {
+          const path = "/api/" + ent;
+
+          try {
+            const result = await window.callApi(path, opts);
+
+            box.appendChild(renderResult(ent, path, result));
+
+            if (result.status === 401) {
+              const token = getToken();
+              const payload = token ? decodeJwt(token) : null;
+
+              const expired =
+                payload && payload.exp && payload.exp * 1000 < Date.now();
+
+              if (!result.sentToken) {
+                showMsg(
+                  $("dataMsg"),
+                  "401 No autorizado: la petición se envió sin token.",
+                  "warn",
+                );
+              } else if (expired) {
+                showMsg(
+                  $("dataMsg"),
+                  "401 No autorizado: el token expiró. Vuelve a iniciar sesión.",
+                  "warn",
+                );
+
+                clearToken();
+                refreshSessionUI();
+              } else {
+                showMsg(
+                  $("dataMsg"),
+                  "401 No autorizado: el token no fue aceptado.",
+                  "warn",
+                );
+              }
+            }
+          } catch (e) {
+            showMsg(
+              $("dataMsg"),
+              "No se pudo conectar con " +
+                CONFIG.API_URL +
+                ". Revisa que el Gateway esté arriba y que tenga CORS configurado para " +
+                location.origin +
+                ".",
+              "err",
+            );
+
+            return;
+          }
+        }
+      }
+
+      // ================= EVENTOS DE BOTONES =================
+
+      $("loadA").addEventListener("click", () => {
+        load(["ENTITYA"]);
+      });
+
+      $("loadB").addEventListener("click", () => {
+        load(["ENTITYB"]);
+      });
+
+      $("loadBoth").addEventListener("click", () => {
+        load(["ENTITYA", "ENTITYB"]);
+      });
+
+      $("noToken").addEventListener("click", () => {
+        load(["ENTITYA"], { useToken: false });
+      });
+
+      // ================= INICIO =================
+
+      $("apiUrlLabel").textContent = CONFIG.API_URL;
+      refreshSessionUI();
     </script>
 
     <script src="js/crud-a.js"></script>
-</body>
+    <script src="js/crud-b.js"></script>
+  </body>
 </html>
