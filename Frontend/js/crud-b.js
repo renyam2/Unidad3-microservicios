@@ -47,15 +47,18 @@
 
     // ================= MENSAJES =================
 
-    function notify(text, kind = "ok") {
+    function clearMessage() {
+  const message = $("crudBMsg");
 
-        const message = $("crudBMsg");
+  if (!message) return;
 
-        if (!message) return;
-
-        message.textContent = text;
-        message.className = "msg show " + kind;
-    }
+  if (window.App?.ui?.clearMessage) {
+    window.App.ui.clearMessage(message);
+  } else {
+    message.textContent = "";
+    message.className = "msg";
+  }
+}
 
     function clearMessage() {
 
