@@ -101,6 +101,30 @@
             <div id="results"></div>
         </section>
 
+        <!-- CRUD ENTITYA (M4) -->
+        <section class="card">
+            <h2>4. Administrar ENTITYA</h2>
+
+            <form id="crudAForm" autocomplete="off">
+                <input id="crudAId" type="hidden">
+                <label for="crudAName">nombreA</label>
+                <input id="crudAName" maxlength="120" required>
+
+                <div class="row">
+                    <button id="crudASubmit" type="submit">Crear ENTITYA</button>
+                    <button id="crudACancel" class="secondary hidden" type="button">
+                        Cancelar edición
+                    </button>
+                    <button id="crudALoad" class="secondary" type="button">
+                        Actualizar lista
+                    </button>
+                </div>
+            </form>
+
+            <div id="crudAMsg" class="msg"></div>
+            <div id="crudAResults"></div>
+        </section>
+
     </main>
 
     <!-- ARCHIVO JAVASCRIPT DE API -->
@@ -493,5 +517,6 @@
 
     </script>
 
+    <script src="js/crud-a.js"></script>
 </body>
 </html>
