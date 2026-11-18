@@ -17,12 +17,18 @@
     try { return sessionStorage.getItem("u3_access_token"); } catch (e) { return null; }
   }
 
-  function notify(text, kind) {
-    const message = $("crudAMsg") || $("dataMsg");
-    if (!message) return;
+  function notify(text, kind = "ok") {
+  const message = $("crudAMsg") || $("dataMsg");
+
+  if (!message) return;
+
+  if (window.App?.ui?.showMsg) {
+    window.App.ui.showMsg(message, text, kind);
+  } else {
     message.textContent = text;
     message.className = "msg show " + kind;
   }
+}
 
   async function request(path, options) {
     const headers = Object.assign({}, options && options.headers);
