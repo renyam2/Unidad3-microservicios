@@ -1,310 +1,113 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Unidad 3 - Frontend OAuth2</title>
-<style>
-  :root {
-    --bg: #f4f6fb; --card: #ffffff; --text: #1f2937; --muted: #6b7280;
-    --primary: #2563eb; --primary-dark: #1d4ed8; --ok: #15803d; --ok-bg: #dcfce7;
-    --err: #b91c1c; --err-bg: #fee2e2; --warn: #92400e; --warn-bg: #fef3c7; --border: #e5e7eb;
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
-  header { background: #111827; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-  header h1 { font-size: 18px; margin: 0; font-weight: 600; }
-  .pill { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #374151; }
-  .pill.on { background: var(--ok); }
-  main { max-width: 960px; margin: 24px auto; padding: 0 16px; display: grid; gap: 16px; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-  .card h2 { margin: 0 0 12px; font-size: 16px; }
-  label { display: block; font-size: 13px; color: var(--muted); margin: 10px 0 4px; }
-  input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; }
-  button { padding: 10px 16px; border: 0; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; background: var(--primary); color: #fff; }
-  button:hover { background: var(--primary-dark); }
-  button.secondary { background: #e5e7eb; color: var(--text); }
-  button.secondary:hover { background: #d1d5db; }
-  button.danger { background: var(--err); }
-  button:disabled { opacity: .5; cursor: not-allowed; }
-  .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
-  .login-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 600px) { .login-grid { grid-template-columns: 1fr; } }
-  .msg { margin-top: 12px; padding: 10px 12px; border-radius: 8px; font-size: 14px; display: none; }
-  .msg.show { display: block; }
-  .msg.ok { background: var(--ok-bg); color: var(--ok); }
-  .msg.err { background: var(--err-bg); color: var(--err); }
-  .msg.warn { background: var(--warn-bg); color: var(--warn); }
-  textarea { width: 100%; min-height: 96px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; padding: 10px; border: 1px solid var(--border); border-radius: 8px; resize: vertical; }
-  pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 8px; font-size: 12px; overflow: auto; margin: 8px 0 0; }
-  .meta { font-size: 13px; color: var(--muted); margin-top: 8px; }
-  .badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 13px; font-weight: 700; }
-  .badge.ok { background: var(--ok-bg); color: var(--ok); }
-  .badge.err { background: var(--err-bg); color: var(--err); }
-  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
-  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
-  th { background: #f9fafb; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
-  .result-title { margin: 18px 0 0; font-size: 14px; font-weight: 700; }
-  .hidden { display: none; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unidad 3 - Frontend OAuth2</title>
+  <!-- Estilos: css/styles.css (Fernanda) -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<header>
-  <h1>Unidad 3 · Microservicios con OAuth2</h1>
-  <span id="sessionPill" class="pill">Sin sesión</span>
-</header>
+  <header>
+    <h1>Unidad 3 · Microservicios con OAuth2</h1>
+    <span id="sessionPill" class="pill">Sin sesión</span>
+  </header>
 
-<main>
+  <main>
 
-  <!-- LOGIN -->
-  <section class="card" id="loginCard">
-    <h2>1. Iniciar sesión</h2>
-    <form id="loginForm" autocomplete="off">
-      <div class="login-grid">
-        <div>
-          <label for="username">Usuario</label>
-          <input id="username" value="user" required>
+    <!-- ============ 1. LOGIN (js/auth.js - Elian) ============ -->
+    <section class="card" id="cardLogin">
+      <h2>1. Iniciar sesión</h2>
+      <form id="loginForm" autocomplete="off">
+        <div class="login-grid">
+          <div>
+            <label for="username">Usuario</label>
+            <input id="username" value="user" required>
+          </div>
+          <div>
+            <label for="password">Contraseña</label>
+            <input id="password" type="password" value="pass123" required>
+          </div>
         </div>
-        <div>
-          <label for="password">Contraseña</label>
-          <input id="password" type="password" value="pass123" required>
+        <div class="row">
+          <button type="submit" id="loginBtn">Login</button>
         </div>
-      </div>
+      </form>
+      <div id="loginMsg" class="msg"></div>
+    </section>
+
+    <!-- ============ 2. TOKEN (js/auth.js - Elian) ============ -->
+    <section class="card hidden" id="tokenCard">
+      <h2>2. Token obtenido</h2>
+      <label for="tokenBox">access_token (JWT)</label>
+      <textarea id="tokenBox" readonly></textarea>
+      <div class="meta" id="tokenMeta"></div>
+      <details>
+        <summary class="meta">Ver contenido (payload) del token</summary>
+        <pre id="tokenPayload"></pre>
+      </details>
       <div class="row">
-        <button type="submit" id="loginBtn">Login</button>
+        <button type="button" id="toggleToken" class="secondary">Mostrar token</button>
+        <button type="button" id="logoutBtn" class="secondary">Cerrar sesión (borrar token)</button>
       </div>
-    </form>
-    <div id="loginMsg" class="msg"></div>
-  </section>
+    </section>
 
-  <!-- TOKEN -->
-  <section class="card hidden" id="tokenCard">
-    <h2>2. Token obtenido</h2>
-    <label>access_token (JWT)</label>
-    <textarea id="tokenBox" readonly></textarea>
-    <div class="meta" id="tokenMeta"></div>
-    <details>
-      <summary class="meta" style="cursor:pointer">Ver contenido (payload) del token</summary>
-      <pre id="tokenPayload"></pre>
-    </details>
-    <div class="row">
-      <button class="secondary" id="toggleToken" type="button">Mostrar token</button>
-      <button class="secondary" id="logoutBtn" type="button">Cerrar sesión (borrar token)</button>
-    </div>
-  </section>
+    <!-- ============ 3. PRUEBA DE SEGURIDAD (js/api.js - Fernanda) ============ -->
+    <section class="card" id="cardSecurity">
+      <h2>3. Prueba de seguridad</h2>
+      <div class="meta">Gateway: <code id="apiUrlLabel"></code></div>
+      <div class="row">
+        <button type="button" id="noToken" class="danger">Probar SIN token (401)</button>
+      </div>
+      <div id="dataMsg" class="msg"></div>
+      <div id="results"></div>
+    </section>
 
-  <!-- DATOS -->
-  <section class="card">
-    <h2>3. Consultar datos vía Gateway</h2>
-    <div class="meta">Gateway: <code id="apiUrlLabel"></code></div>
-    <div class="row">
-      <button id="loadA" type="button">Listar ENTITYA</button>
-      <button id="loadB" type="button">Listar ENTITYB</button>
-      <button id="loadBoth" type="button">Listar ambas</button>
-      <button id="noToken" type="button" class="danger">Probar SIN token (401)</button>
-    </div>
-    <div id="dataMsg" class="msg"></div>
-    <div id="results"></div>
-  </section>
+    <!-- ============ 4. CRUD ENTITYA (js/crud-a.js - Nuvia) ============ -->
+    <section class="card" id="cardA" data-requires-auth>
+      <h2>4. ENTITYA</h2>
+      <div id="msgA" class="msg"></div>
+      <form id="formA" autocomplete="off">
+        <input type="hidden" id="idA">
+        <label for="nombreA">nombreA</label>
+        <input id="nombreA" required>
+        <div class="row">
+          <button type="submit" id="saveA">Guardar</button>
+          <button type="button" id="cancelA" class="secondary hidden">Cancelar edición</button>
+          <button type="button" id="refreshA" class="secondary">Actualizar lista</button>
+        </div>
+      </form>
+      <div id="tableA"></div>
+    </section>
 
-</main>
+    <!-- ============ 5. CRUD ENTITYB (js/crud-b.js - Aldair) ============ -->
+    <section class="card" id="cardB" data-requires-auth>
+      <h2>5. ENTITYB</h2>
+      <div id="msgB" class="msg"></div>
+      <form id="formB" autocomplete="off">
+        <input type="hidden" id="idB">
+        <label for="nombreB">nombreB</label>
+        <input id="nombreB" required>
+        <label for="entityAIds">entityAIds (Ctrl + clic para elegir varios)</label>
+        <select id="entityAIds" multiple size="4"></select>
+        <div class="row">
+          <button type="submit" id="saveB">Guardar</button>
+          <button type="button" id="cancelB" class="secondary hidden">Cancelar edición</button>
+          <button type="button" id="refreshB" class="secondary">Actualizar lista</button>
+        </div>
+      </form>
+      <div id="tableB"></div>
+    </section>
 
-<script>
-/* ================= CONFIGURACIÓN =================
-   Cambia solo estos valores cuando los demás terminen su fase. */
-const CONFIG = {
-  // Ahora: AuthServer directo.  Después (Fase 4): usar el Gateway, ej. "http://localhost:8083"
-  AUTH_URL: "http://localhost:8083",
-  // Gateway (ver server.port en Gateway/src/main/resources/application.yml)
-  API_URL: "http://localhost:8083",
-  CLIENT_ID: "frontend",
-  CLIENT_SECRET: "frontend-secret",
-  SCOPE: "read"
-};
+  </main>
 
-/* ================= ESTADO / UTILIDADES ================= */
-const $ = (id) => document.getElementById(id);
-const TOKEN_KEY = "u3_access_token";
-
-const getToken = () => { try { return sessionStorage.getItem(TOKEN_KEY); } catch (e) { return null; } };
-const setToken = (t) => { try { sessionStorage.setItem(TOKEN_KEY, t); } catch (e) {} };
-const clearToken = () => { try { sessionStorage.removeItem(TOKEN_KEY); } catch (e) {} };
-
-function decodeJwt(token) {
-  try {
-    const part = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
-    return JSON.parse(decodeURIComponent(escape(atob(part))));
-  } catch (e) { return null; }
-}
-
-function showMsg(el, text, kind) {
-  el.textContent = text;
-  el.className = "msg show " + kind;
-}
-function hideMsg(el) { el.className = "msg"; el.textContent = ""; }
-
-/* ================= SESIÓN ================= */
-let tokenVisible = false;
-function maskToken(t) { return t.slice(0, 10) + "••••••••••••••••••••••••••••••  (token oculto)"; }
-$("toggleToken").addEventListener("click", () => { tokenVisible = !tokenVisible; refreshSessionUI(); });
-
-function refreshSessionUI() {
-  const token = getToken();
-  const pill = $("sessionPill");
-  if (!token) {
-    pill.textContent = "Sin sesión"; pill.className = "pill";
-    $("tokenCard").classList.add("hidden");
-    return;
-  }
-  const payload = decodeJwt(token);
-  pill.textContent = "Sesión activa"; pill.className = "pill on";
-  $("tokenCard").classList.remove("hidden");
-  $("tokenBox").value = tokenVisible ? token : maskToken(token);
-  $("toggleToken").textContent = tokenVisible ? "Ocultar token" : "Mostrar token";
-  $("tokenPayload").textContent = payload ? JSON.stringify(payload, null, 2) : "(no se pudo decodificar)";
-  if (payload && payload.exp) {
-    const exp = new Date(payload.exp * 1000);
-    const expired = exp.getTime() < Date.now();
-    $("tokenMeta").textContent = (expired ? "EXPIRADO el " : "Expira el ") + exp.toLocaleString();
-  } else {
-    $("tokenMeta").textContent = "";
-  }
-}
-
-/* ================= LOGIN ================= */
-$("loginForm").addEventListener("submit", async (ev) => {
-  ev.preventDefault();
-  hideMsg($("loginMsg"));
-  $("loginBtn").disabled = true;
-  try {
-    const body = new URLSearchParams({
-      grant_type: "password",
-      username: $("username").value.trim(),
-      password: $("password").value,
-      scope: CONFIG.SCOPE,
-      client_id: CONFIG.CLIENT_ID,
-      client_secret: CONFIG.CLIENT_SECRET
-    });
-    const res = await fetch(CONFIG.AUTH_URL + "/oauth2/token", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok || !data.access_token) {
-      showMsg($("loginMsg"), "Login fallido (" + res.status + "): " + (data.error_description || data.error || "credenciales incorrectas"), "err");
-      return;
-    }
-    setToken(data.access_token);
-    showMsg($("loginMsg"), "Login correcto. Token recibido (expira en " + (data.expires_in || "?") + " s).", "ok");
-    refreshSessionUI();
-  } catch (e) {
-    showMsg($("loginMsg"),
-      "No se pudo conectar con " + CONFIG.AUTH_URL + ". Revisa que el AuthServer esté arriba y que permita CORS para este origen (" + location.origin + ").", "err");
-  } finally {
-    $("loginBtn").disabled = false;
-  }
-});
-
-$("logoutBtn").addEventListener("click", () => {
-  clearToken();
-  tokenVisible = false;
-  refreshSessionUI();
-  hideMsg($("loginMsg"));
-  $("results").innerHTML = "";
-  hideMsg($("dataMsg"));
-});
-
-/* ================= LLAMADAS AL GATEWAY ================= */
-async function callApi(path, { useToken = true } = {}) {
-  const headers = {};
-  const token = getToken();
-  if (useToken && token) headers["Authorization"] = "Bearer " + token;
-  const res = await fetch(CONFIG.API_URL + path, { headers });
-  let data = null;
-  const text = await res.text();
-  try { data = text ? JSON.parse(text) : null; } catch (e) { data = text; }
-  return { status: res.status, ok: res.ok, data, sentToken: useToken && !!token };
-}
-
-function renderTable(rows) {
-  if (!Array.isArray(rows) || rows.length === 0) {
-    const p = document.createElement("div");
-    p.className = "meta"; p.textContent = "Sin registros.";
-    return p;
-  }
-  const cols = [];
-  rows.forEach(r => Object.keys(r).forEach(k => { if (!cols.includes(k)) cols.push(k); }));
-  const table = document.createElement("table");
-  const thead = table.createTHead().insertRow();
-  cols.forEach(c => { const th = document.createElement("th"); th.textContent = c; thead.appendChild(th); });
-  const tbody = table.createTBody();
-  rows.forEach(r => {
-    const tr = tbody.insertRow();
-    cols.forEach(c => {
-      const v = r[c];
-      tr.insertCell().textContent = Array.isArray(v) ? v.join(", ") : (v !== null && typeof v === "object" ? JSON.stringify(v) : (v ?? ""));
-    });
-  });
-  return table;
-}
-
-function renderResult(label, path, r) {
-  const wrap = document.createElement("div");
-  const title = document.createElement("div");
-  title.className = "result-title";
-  const badge = document.createElement("span");
-  badge.className = "badge " + (r.ok ? "ok" : "err");
-  badge.textContent = r.status;
-  title.append(label + " (GET " + path + ") ", badge, r.sentToken ? "  · con token" : "  · sin token");
-  wrap.appendChild(title);
-  if (r.ok) wrap.appendChild(renderTable(r.data));
-  else {
-    const pre = document.createElement("pre");
-    pre.textContent = typeof r.data === "string" ? r.data : JSON.stringify(r.data, null, 2) || "(sin cuerpo en la respuesta)";
-    wrap.appendChild(pre);
-  }
-  return wrap;
-}
-
-async function load(entities, opts = {}) {
-  const box = $("results");
-  box.innerHTML = "";
-  hideMsg($("dataMsg"));
-  for (const ent of entities) {
-    const path = "/api/" + ent;
-    try {
-      const r = await callApi(path, opts);
-      box.appendChild(renderResult(ent, path, r));
-      if (r.status === 401) {
-        const payload = getToken() ? decodeJwt(getToken()) : null;
-        const expired = payload && payload.exp && payload.exp * 1000 < Date.now();
-        if (!r.sentToken) {
-          showMsg($("dataMsg"), "401 No autorizado: la petición se envió sin token.", "warn");
-        } else if (expired) {
-          showMsg($("dataMsg"), "401 No autorizado: el token expiró. Vuelve a iniciar sesión.", "warn");
-          clearToken(); refreshSessionUI();
-        } else {
-          showMsg($("dataMsg"), "401 No autorizado: el token no fue aceptado (inválido o emitido por otro AuthServer).", "warn");
-        }
-      }
-    } catch (e) {
-      showMsg($("dataMsg"),
-        "No se pudo conectar con " + CONFIG.API_URL + ". Revisa que el Gateway esté arriba y que tenga CORS configurado para " + location.origin + ".", "err");
-      return;
-    }
-  }
-}
-
-$("loadA").addEventListener("click", () => load(["ENTITYA"]));
-$("loadB").addEventListener("click", () => load(["ENTITYB"]));
-$("loadBoth").addEventListener("click", () => load(["ENTITYA", "ENTITYB"]));
-$("noToken").addEventListener("click", () => load(["ENTITYA"], { useToken: false }));
-
-/* ================= INICIO ================= */
-$("apiUrlLabel").textContent = CONFIG.API_URL;
-refreshSessionUI();
-</script>
+  <!-- Orden de carga: NO cambiarlo (cada módulo usa los anteriores) -->
+  <script src="js/config.js"></script>   <!-- Ariadna -->
+  <script src="js/ui.js"></script>       <!-- Daniel  -->
+  <script src="js/auth.js"></script>     <!-- Elian   -->
+  <script src="js/api.js"></script>      <!-- Fernanda -->
+  <script src="js/crud-a.js"></script>   <!-- Nuvia   -->
+  <script src="js/crud-b.js"></script>   <!-- Aldair  -->
 </body>
 </html>
