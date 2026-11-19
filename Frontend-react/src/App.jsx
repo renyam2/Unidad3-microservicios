@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from './hooks/useAuthContext.js'
+import { AuthProvider, useAuth } from './hooks/useAuthContext.jsx'
 import HeaderBar from './components/HeaderBar.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import LoginPage from './pages/LoginPage.jsx'

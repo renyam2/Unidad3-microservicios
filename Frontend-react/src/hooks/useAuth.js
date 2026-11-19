@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { startLogin, handleCallback, TOKEN_KEY } from '../services/oauth.js'
+import { loginPassword, handleCallback, TOKEN_KEY } from '../services/oauth.js'
 
 const TOKEN_KEY_LOCAL = TOKEN_KEY || 'u3_access_token'
 
@@ -30,9 +30,12 @@ export default function useAuth() {
     setPayload(null)
   }, [])
 
-  const login = useCallback(() => {
-    startLogin()
-  }, [])
+  // login(username, password) → POST /oauth2/token (grant password) y guarda el token.
+  const login = useCallback(async (username, password) => {
+    const t = await loginPassword(username, password)
+    setToken(t)
+    return t
+  }, [setToken])
 
   const callback = useCallback(async () => {
     const t = await handleCallback()

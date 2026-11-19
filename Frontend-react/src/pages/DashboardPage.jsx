@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuthContext.js'
+import { useAuth } from '../hooks/useAuthContext.jsx'
 
 const SECCIONES = [
   { id: 'divisiones', to: '/divisiones', title: 'Divisiones', desc: 'Administrar divisiones (microservicio A)' },

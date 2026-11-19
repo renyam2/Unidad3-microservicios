@@ -16,6 +16,30 @@ function randomState() {
   return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('')
 }
 
+// Login con grant password: POST /oauth2/token (vía Gateway).
+// Devuelve el access_token o lanza Error con el mensaje del servidor.
+export async function loginPassword(username, password) {
+  const res = await fetch(`${GATEWAY}/oauth2/token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
+    },
+    body: new URLSearchParams({
+      grant_type: 'password',
+      username,
+      password,
+      scope: SCOPE,
+    }),
+  })
+
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok || !data.access_token) {
+    throw new Error(data.error_description || data.error || `Error ${res.status} al iniciar sesión`)
+  }
+  return data.access_token
+}
+
 // Manda al usuario a la pantalla de login del AuthServer.
 export function startLogin() {
   const state = randomState()

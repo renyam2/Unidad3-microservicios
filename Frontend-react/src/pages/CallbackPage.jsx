@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuthContext.js'
+import { useAuth } from '../hooks/useAuthContext.jsx'
 
 export default function CallbackPage() {
   const { callback } = useAuth()
