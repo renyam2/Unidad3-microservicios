@@ -29,6 +29,9 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsentService;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
+import org.springframework.security.oauth2.server.authorization.authentication.ClientSecretAuthenticationProvider;
+import org.springframework.security.oauth2.server.authorization.authentication.OAuth2AuthorizationCodeRequestAuthenticationProvider;
+import org.springframework.security.oauth2.server.authorization.authentication.OAuth2AuthorizationConsentAuthenticationProvider;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
@@ -136,13 +139,50 @@ public class AuthorizationServerConfig {
         return new InMemoryUserDetailsManager(user);
     }
 
+    /**
+     * Proveedor de autenticación expuesto como Bean: la autoconfiguración de
+     * Spring Security (AuthenticationConfiguration / InitializeAuthenticationProviderBeanManagerConfigurer)
+     * lo recoge para construir el AuthenticationManager usado por el form login.
+     */
     @Bean
-    public AuthenticationManager authenticationManager(UserDetailsService userDetailsService,
-                                                       PasswordEncoder passwordEncoder) {
+    public DaoAuthenticationProvider daoAuthenticationProvider(UserDetailsService userDetailsService,
+                                                                PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder);
-        return new ProviderManager(provider);
+        return provider;
+    }
+
+    /**
+     * AuthenticationManager usado por el PasswordGrantAuthenticationProvider
+     * para autenticar al usuario (user/pass123) dentro del grant type "password".
+     * No se registra en el SecurityFilterChain via HttpSecurity.authenticationManager(...):
+     * si se hiciera, HttpSecurity ignoraria los providers que los configurers del
+     * Authorization Server registran en el AuthenticationManagerBuilder compartido
+     * (incluido el PasswordGrantAuthenticationProvider del token endpoint).
+     * Dejando que HttpSecurity construya su AuthenticationManager desde el builder,
+     * el ProviderManager final incluye: daoAuthenticationProvider (form login),
+     * ClientSecretAuthenticationProvider (autenticacion de cliente),
+     * OAuth2AuthorizationCodeRequest/ConsentAuthenticationProvider (endpoint /oauth2/authorize)
+     * y el PasswordGrantAuthenticationProvider (endpoint /oauth2/token).
+     */
+    @Bean
+    public AuthenticationManager authenticationManager(
+            DaoAuthenticationProvider daoAuthenticationProvider,
+            RegisteredClientRepository registeredClientRepository,
+            OAuth2AuthorizationService authorizationService,
+            OAuth2AuthorizationConsentService authorizationConsentService,
+            PasswordEncoder passwordEncoder) {
+        ClientSecretAuthenticationProvider clientSecretProvider =
+                new ClientSecretAuthenticationProvider(registeredClientRepository, authorizationService);
+        clientSecretProvider.setPasswordEncoder(passwordEncoder);
+        return new ProviderManager(
+                daoAuthenticationProvider,
+                clientSecretProvider,
+                new OAuth2AuthorizationCodeRequestAuthenticationProvider(
+                        registeredClientRepository, authorizationService, authorizationConsentService),
+                new OAuth2AuthorizationConsentAuthenticationProvider(
+                        registeredClientRepository, authorizationService, authorizationConsentService));
     }
 
     /**
@@ -160,7 +200,7 @@ public class AuthorizationServerConfig {
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
                 .authorizationGrantType(AuthorizationGrantType.PASSWORD)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .redirectUri("http://localhost:3000/callback")
+                .redirectUri("http://localhost:5500/callback")
                 .scope("read")
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenTimeToLive(Duration.ofMinutes(30))
@@ -202,14 +242,15 @@ public class AuthorizationServerConfig {
     @Bean
     public SecurityFilterChain authorizationServerSecurityFilterChain(
             HttpSecurity http,
+            DaoAuthenticationProvider daoAuthenticationProvider,
             PasswordGrantAuthenticationProvider passwordGrantProvider) throws Exception {
         http
+                .authenticationProvider(daoAuthenticationProvider)
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/oauth2/**", "/.well-known/**", "/actuator/health", "/login").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(form -> form
-                        .loginPage("/login"));
+                .formLogin();
 
         OAuth2AuthorizationServerConfigurer oauth2 = OAuth2AuthorizationServerConfigurer.authorizationServer();
         http.apply(oauth2);

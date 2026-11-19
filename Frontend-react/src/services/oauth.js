@@ -1,14 +1,13 @@
 // Flujo Authorization Code contra el AuthServer.
-const AUTH_SERVER = 'http://localhost:9000'   // login (navegación del navegador)
-const GATEWAY = 'http://localhost:8083'        // canje del code por el token
-const CLIENT_ID = 'frontend'
-const CLIENT_SECRET = 'frontend-secret'
-const REDIRECT_URI = 'http://localhost:5500/callback' // debe estar registrado en el AuthServer
-const SCOPE = 'read'
-const TOKEN_KEY = 'u3_access_token'
+export const AUTH_SERVER = 'http://localhost:9000'   // login (navegación del navegador)
+export const GATEWAY = 'http://localhost:8083'        // canje del code por el token
+export const CLIENT_ID = 'frontend'
+export const CLIENT_SECRET = 'frontend-secret'
+export const REDIRECT_URI = 'http://localhost:5500/callback' // debe estar registrado en el AuthServer
+export const SCOPE = 'read'
+export const TOKEN_KEY = 'u3_access_token'
 const STATE_KEY = 'u3_oauth_state'
 
-let redirecting = false
 let pending = null
 
 function randomState() {
@@ -19,8 +18,6 @@ function randomState() {
 
 // Manda al usuario a la pantalla de login del AuthServer.
 export function startLogin() {
-  if (redirecting) return
-  redirecting = true
   const state = randomState()
   sessionStorage.setItem(STATE_KEY, state)
   const params = new URLSearchParams({

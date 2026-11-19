@@ -1,30 +1,65 @@
-import { useState } from 'react'
-import LoginForm from './components/LoginForm.jsx'
-import Dashboard from './components/Dashboard.jsx'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider, useAuth } from './hooks/useAuthContext.js'
+import HeaderBar from './components/HeaderBar.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+import LoginPage from './pages/LoginPage.jsx'
+import CallbackPage from './pages/CallbackPage.jsx'
+import DashboardPage from './pages/DashboardPage.jsx'
+import DivisionesPage from './pages/DivisionesPage.jsx'
+import ProgramasPage from './pages/ProgramasPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 
-const auth = () => window.App?.auth
+function RootRedirect() {
+  const { token } = useAuth()
+  return <Navigate to={token ? '/dashboard' : '/login'} replace />
+}
 
 export default function App() {
-  const [token, setToken] = useState(auth()?.getToken() || null)
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <AppShell />
+      </BrowserRouter>
+    </AuthProvider>
+  )
+}
 
-  function logout() {
-    auth().logout()
-    setToken(null)
-  }
+function AppShell() {
+  const { token, logout } = useAuth()
 
   return (
     <>
-      <header className="app-header">
-        <h1>Unidad 3 · Microservicios</h1>
-        <span className={'pill' + (token ? ' on' : '')}>
-          {token ? 'Sesión activa' : 'Sin sesión'}
-        </span>
-      </header>
-      <main className="container">
-        {token
-          ? <Dashboard token={token} onLogout={logout} />
-          : <LoginForm onLogin={() => setToken(auth().getToken())} />}
-      </main>
+      <HeaderBar token={token} onLogout={logout} />
+      <Routes>
+        <Route path="/" element={<RootRedirect />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/callback" element={<CallbackPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute token={token}>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/divisiones"
+          element={
+            <ProtectedRoute token={token}>
+              <DivisionesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/programas"
+          element={
+            <ProtectedRoute token={token}>
+              <ProgramasPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   )
 }

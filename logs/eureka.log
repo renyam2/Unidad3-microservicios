@@ -1,0 +1,234 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-17T17:25:26.610-06:00  INFO 3806 --- [EurekaServer] [           main] c.u.eureka.EurekaServerApplication       : Starting EurekaServerApplication v0.0.1-SNAPSHOT using Java 17.0.21.0.2 with PID 3806 (/home/renyam/Documentos/8vo cuatrimestre/WEB/Unidad3/EurekaServer/target/eureka-server-0.0.1-SNAPSHOT.jar started by renyam in /home/renyam/Documentos/8vo cuatrimestre/WEB/Unidad3)
+2026-11-17T17:25:26.613-06:00  INFO 3806 --- [EurekaServer] [           main] c.u.eureka.EurekaServerApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-11-17T17:25:27.330-06:00  INFO 3806 --- [EurekaServer] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=0c57109e-5125-37d7-86e0-7b67bb0b0c51
+2026-11-17T17:25:27.522-06:00  INFO 3806 --- [EurekaServer] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8761 (http)
+2026-11-17T17:25:27.532-06:00  INFO 3806 --- [EurekaServer] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-17T17:25:27.532-06:00  INFO 3806 --- [EurekaServer] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-17T17:25:27.551-06:00  INFO 3806 --- [EurekaServer] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-17T17:25:27.552-06:00  INFO 3806 --- [EurekaServer] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 894 ms
+2026-11-17T17:25:28.111-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2026-11-17T17:25:28.111-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2026-11-17T17:25:28.268-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2026-11-17T17:25:28.268-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2026-11-17T17:25:28.383-06:00  INFO 3806 --- [EurekaServer] [           main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-11-17T17:25:28.771-06:00  WARN 3806 --- [EurekaServer] [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-11-17T17:25:28.783-06:00  INFO 3806 --- [EurekaServer] [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-11-17T17:25:28.799-06:00  INFO 3806 --- [EurekaServer] [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-11-17T17:25:28.799-06:00  INFO 3806 --- [EurekaServer] [           main] com.netflix.discovery.DiscoveryClient    : Client configured to neither register nor query for data.
+2026-11-17T17:25:28.800-06:00  INFO 3806 --- [EurekaServer] [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1794957928800 with initial instances count: 0
+2026-11-17T17:25:28.820-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.eureka.DefaultEurekaServerContext    : Initializing ...
+2026-11-17T17:25:28.821-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.eureka.cluster.PeerEurekaNodes       : Adding new peer nodes [http://localhost:8761/eureka/]
+2026-11-17T17:25:28.903-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON encoding codec LegacyJacksonJson
+2026-11-17T17:25:28.904-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using JSON decoding codec LegacyJacksonJson
+2026-11-17T17:25:28.904-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML encoding codec XStreamXml
+2026-11-17T17:25:28.904-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.d.provider.DiscoveryJerseyProvider   : Using XML decoding codec XStreamXml
+2026-11-17T17:25:28.926-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.eureka.cluster.PeerEurekaNodes       : Replica node URL:  http://localhost:8761/eureka/
+2026-11-17T17:25:28.931-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.e.registry.AbstractInstanceRegistry  : Finished initializing remote region registries. All known remote regions: []
+2026-11-17T17:25:28.931-06:00  INFO 3806 --- [EurekaServer] [           main] c.n.eureka.DefaultEurekaServerContext    : Initialized
+2026-11-17T17:25:28.937-06:00  INFO 3806 --- [EurekaServer] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-11-17T17:25:28.966-06:00  INFO 3806 --- [EurekaServer] [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application EUREKASERVER with eureka with status UP
+2026-11-17T17:25:28.977-06:00  INFO 3806 --- [EurekaServer] [       Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : isAws returned false
+2026-11-17T17:25:28.977-06:00  INFO 3806 --- [EurekaServer] [       Thread-9] o.s.c.n.e.server.EurekaServerBootstrap   : Initialized server context
+2026-11-17T17:25:28.977-06:00  INFO 3806 --- [EurekaServer] [       Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Got 1 instances from neighboring DS node
+2026-11-17T17:25:28.977-06:00  INFO 3806 --- [EurekaServer] [       Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Renew threshold is: 1
+2026-11-17T17:25:28.977-06:00  INFO 3806 --- [EurekaServer] [       Thread-9] c.n.e.r.PeerAwareInstanceRegistryImpl    : Changing status to UP
+2026-11-17T17:25:28.979-06:00  INFO 3806 --- [EurekaServer] [       Thread-9] e.s.EurekaServerInitializerConfiguration : Started Eureka Server
+2026-11-17T17:25:28.986-06:00  INFO 3806 --- [EurekaServer] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8761 (http) with context path '/'
+2026-11-17T17:25:28.987-06:00  INFO 3806 --- [EurekaServer] [           main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8761
+2026-11-17T17:25:29.008-06:00  INFO 3806 --- [EurekaServer] [           main] c.u.eureka.EurekaServerApplication       : Started EurekaServerApplication in 2.749 seconds (process running for 3.182)
+2026-11-17T17:25:38.111-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-17T17:25:38.111-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-17T17:25:38.112-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-17T17:25:38.333-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVER/192.168.1.69:auth-server:9000 with status UP (replication=false)
+2026-11-17T17:25:38.973-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance AUTH-SERVER/192.168.1.69:auth-server:9000 with status UP (replication=true)
+2026-11-17T17:25:39.293-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-6] c.n.e.registry.AbstractInstanceRegistry  : Registered instance MS-A/192.168.1.69:MS-A:8081 with status UP (replication=false)
+2026-11-17T17:25:39.735-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance MS-B/192.168.1.69:MS-B:8082 with status UP (replication=false)
+2026-11-17T17:25:39.800-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : Registered instance MS-A/192.168.1.69:MS-A:8081 with status UP (replication=true)
+2026-11-17T17:25:39.801-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-8] c.n.e.registry.AbstractInstanceRegistry  : Registered instance MS-B/192.168.1.69:MS-B:8082 with status UP (replication=true)
+2026-11-17T17:26:28.977-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:27:28.977-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:28:28.977-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:29:28.977-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:30:28.977-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:31:19.944-06:00  INFO 3806 --- [EurekaServer] [io-8761-exec-10] c.n.e.registry.AbstractInstanceRegistry  : Registered instance GATEWAY/192.168.1.69:gateway:8080 with status UP (replication=false)
+2026-11-17T17:31:20.448-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-9] c.n.e.registry.AbstractInstanceRegistry  : Registered instance GATEWAY/192.168.1.69:gateway:8080 with status UP (replication=true)
+2026-11-17T17:31:28.977-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:32:28.977-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:33:28.977-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:34:28.978-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2026-11-17T17:35:28.978-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:36:28.978-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:37:28.979-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2026-11-17T17:38:28.979-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:39:28.979-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:40:28.931-06:00  INFO 3806 --- [EurekaServer] [hresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 8
+2026-11-17T17:40:28.979-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:41:28.979-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:42:28.980-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:43:28.980-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:44:28.981-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:45:28.981-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:46:28.981-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:47:28.982-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:48:28.982-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:49:28.982-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:50:28.983-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:51:28.983-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:52:28.983-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:53:28.983-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:54:28.983-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:55:28.931-06:00  INFO 3806 --- [EurekaServer] [hresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 8
+2026-11-17T17:55:28.983-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:56:28.983-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:57:28.983-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:58:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T17:59:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:00:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:01:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:02:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:03:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:04:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:05:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:06:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:07:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:08:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:09:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:10:28.932-06:00  INFO 3806 --- [EurekaServer] [hresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 8
+2026-11-17T18:10:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:11:28.984-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:12:28.985-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 1ms
+2026-11-17T18:13:28.985-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:14:28.985-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:15:28.985-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:16:28.985-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:17:28.986-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:18:28.986-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:19:28.986-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:20:28.986-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:21:28.987-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:22:28.987-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:23:28.987-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:24:28.987-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:25:28.932-06:00  INFO 3806 --- [EurekaServer] [hresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 8
+2026-11-17T18:25:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:26:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:27:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:28:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:29:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:30:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:31:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:32:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:33:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:34:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:35:28.989-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:36:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:37:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:38:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:39:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:40:28.932-06:00  INFO 3806 --- [EurekaServer] [hresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 8
+2026-11-17T18:40:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:41:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:42:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:43:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:44:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:45:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:46:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:47:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:48:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:49:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:50:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:51:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:52:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:53:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:54:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:55:28.932-06:00  INFO 3806 --- [EurekaServer] [hresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 8
+2026-11-17T18:55:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:56:28.989-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:57:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:58:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T18:59:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:00:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:01:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:02:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:03:28.988-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:04:28.989-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:05:28.989-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:06:28.989-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:07:28.989-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:08:28.990-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:09:28.989-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:10:28.932-06:00  INFO 3806 --- [EurekaServer] [hresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 8
+2026-11-17T19:10:28.989-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:11:28.990-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:12:28.990-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:13:28.991-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:14:28.991-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:15:28.991-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:16:28.991-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:17:28.991-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:18:28.991-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:19:28.992-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:20:28.992-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:21:28.992-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:22:28.992-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:23:28.993-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:24:28.993-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:25:28.932-06:00  INFO 3806 --- [EurekaServer] [hresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 8
+2026-11-17T19:25:28.994-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:26:28.994-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:27:28.994-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:28:28.994-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:29:28.995-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:30:28.995-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:31:28.995-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:32:28.995-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:33:28.995-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:34:28.996-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:35:28.996-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:36:28.996-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:37:28.997-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:38:28.997-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:39:28.997-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:40:28.932-06:00  INFO 3806 --- [EurekaServer] [hresholdUpdater] c.n.e.r.PeerAwareInstanceRegistryImpl    : Current renewal threshold is : 8
+2026-11-17T19:40:28.997-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:41:28.997-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:42:28.997-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:43:28.997-06:00  INFO 3806 --- [EurekaServer] [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2026-11-17T19:44:26.520-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application EUREKASERVER with eureka with status DOWN
+2026-11-17T19:44:26.531-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance MS-B/192.168.1.69:MS-B:8082 with status DOWN (replication=false)
+2026-11-17T19:44:26.531-06:00  INFO 3806 --- [EurekaServer] [nio-8761-exec-7] c.n.e.registry.AbstractInstanceRegistry  : Registered instance MS-A/192.168.1.69:MS-A:8081 with status DOWN (replication=false)
+2026-11-17T19:44:26.532-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-17T19:44:26.537-06:00  INFO 3806 --- [EurekaServer] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-11-17T19:44:26.543-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] o.s.c.n.e.server.EurekaServerBootstrap   : Shutting down Eureka Server..
+2026-11-17T19:44:26.544-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
+2026-11-17T19:44:26.556-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shut down
+2026-11-17T19:44:26.556-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] o.s.c.n.e.server.EurekaServerBootstrap   : Eureka Service is now shutdown...
+2026-11-17T19:44:26.556-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
+2026-11-17T19:44:26.556-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] c.n.eureka.DefaultEurekaServerContext    : Shut down
+2026-11-17T19:44:26.545-06:00 ERROR 3806 --- [EurekaServer] [t-Conn-Cleaner2] c.n.d.s.t.j.EurekaJersey3ClientImpl      : Cannot clean connections
+
+java.lang.IllegalStateException: Client instance has been closed.
+	at org.glassfish.jersey.internal.guava.Preconditions.checkState(Preconditions.java:169) ~[jersey-common-3.1.11.jar!/:na]
+	at org.glassfish.jersey.client.JerseyClient.checkNotClosed(JerseyClient.java:248) ~[jersey-client-3.1.11.jar!/:na]
+	at org.glassfish.jersey.client.JerseyClient.getConfiguration(JerseyClient.java:363) ~[jersey-client-3.1.11.jar!/:na]
+	at org.glassfish.jersey.client.JerseyClient.getConfiguration(JerseyClient.java:54) ~[jersey-client-3.1.11.jar!/:na]
+	at com.netflix.discovery.shared.transport.jersey3.EurekaJersey3ClientImpl$ConnectionCleanerTask.run(EurekaJersey3ClientImpl.java:338) ~[eureka-client-jersey3-2.0.6.jar!/:2.0.6]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-11-17T19:44:26.564-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2026-11-17T19:44:26.568-06:00  INFO 3806 --- [EurekaServer] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
