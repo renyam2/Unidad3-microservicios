@@ -15,26 +15,51 @@ export default function DivisionesPage() {
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState(null) // { text, kind }
 
-  function handleErr(err) {
-    setMsg({ text: err.message, kind: 'err' })
-    if (err.status === 401) {
-      logout()
-      navigate('/login', { replace: true })
-    }
-  }
 
-  async function load() {
-    setBusy(true)
-    try {
-      const data = await callApi(RESOURCE, {}, token)
-      setRows(data)
-      setMsg(null)
-    } catch (err) {
-      handleErr(err)
-    } finally {
-      setBusy(false)
-    }
+function notifyHttp(status, text) {
+  setMsg(window.App.ui.httpNotice(status, text))
+}
+
+
+
+function handleErr(err) {
+  notifyHttp(err.status, err.message)
+
+  if (err.status === 401) {
+    logout()
+    navigate('/login', { replace: true })
   }
+}
+
+
+
+async function load(showNotice = false) {
+  setBusy(true)
+
+  try {
+    const response = await callApi(
+      RESOURCE,
+      { includeResponse: true },
+      token
+    )
+
+    setRows(response.data)
+
+    if (showNotice) {
+      notifyHttp(
+        response.status,
+        'Divisiones consultadas correctamente.'
+      )
+    }
+
+    return true
+  } catch (err) {
+    handleErr(err)
+    return false
+  } finally {
+    setBusy(false)
+  }
+}
 
   useEffect(() => {
     load()
@@ -73,21 +98,40 @@ export default function DivisionesPage() {
     }
   }
 
-  async function handleRemove(id) {
-    if (!window.confirm(`¿Eliminar ENTITYA #${id}?`)) return
-    setBusy(true)
-    setMsg(null)
-    try {
-      await callApi(`${RESOURCE}/${id}`, { method: 'DELETE' }, token)
-      setMsg({ text: 'ENTITYA eliminada correctamente.', kind: 'ok' })
-      if (editId === id) resetForm()
-      await load()
-    } catch (err) {
-      handleErr(err)
-    } finally {
-      setBusy(false)
+  
+async function handleRemove(id) {
+  if (!window.confirm(`¿Eliminar división #${id}?`)) return
+
+  setBusy(true)
+  setMsg(null)
+
+  try {
+    const response = await callApi(
+      `${RESOURCE}/${id}`,
+      {
+        method: 'DELETE',
+        includeResponse: true
+      },
+      token
+    )
+
+    if (editId === id) resetForm()
+
+    const loaded = await load()
+
+    if (loaded) {
+      notifyHttp(
+        response.status,
+        'División eliminada correctamente.'
+      )
     }
+  } catch (err) {
+    handleErr(err)
+  } finally {
+    setBusy(false)
   }
+}
+
 
   return (
     <main className="container">
@@ -104,7 +148,19 @@ export default function DivisionesPage() {
               disabled={busy}
             />
           </label>
-          {msg && <p className={`msg show ${msg.kind}`}>{msg.text}</p>}
+          
+{msg && (
+  <p
+    className={`msg show ${msg.kind}`}
+    role={msg.kind === 'err' ? 'alert' : 'status'}
+  >
+    {msg.status != null && (
+      <strong>HTTP {msg.status} — </strong>
+    )}
+    {msg.text}
+  </p>
+)}
+
           <div className="row">
             <button className="btn primary" type="submit" disabled={busy}>
               {busy ? 'Guardando…' : editId != null ? 'Guardar cambios' : 'Crear ENTITYA'}
@@ -114,7 +170,7 @@ export default function DivisionesPage() {
                 Cancelar edición
               </button>
             )}
-            <button className="btn secondary" type="button" onClick={load} disabled={busy}>
+            <button className="btn secondary" type="button" onClick={() => load(true)} disabled={busy}>
               Recargar lista
             </button>
           </div>

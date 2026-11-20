@@ -152,15 +152,38 @@ function showMsg(element, text, kind = "ok") {
     );
   }
 
+
+  // Generar notificaciones HTTP para React
+  function httpNotice(status, message) {
+    const code = Number(status);
+
+    const validCode =
+      Number.isInteger(code) &&
+      code >= 100 &&
+      code <= 599;
+
+    return {
+      status: validCode ? code : null,
+      text: String(message ?? ""),
+      kind:
+        validCode && code >= 200 && code < 300
+          ? "ok"
+          : "err"
+    };
+  }
+
   // Publicar funciones para los otros módulos
+  
   window.App.ui = {
     showMsg,
     clearMessage,
     renderTable,
     renderBadge,
     showLoading,
-    confirmDelete
+    confirmDelete,
+    httpNotice
   };
+
 
   console.log("[UI] Módulo de interfaz cargado");
 })();

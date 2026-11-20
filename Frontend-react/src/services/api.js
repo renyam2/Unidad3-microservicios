@@ -16,7 +16,13 @@ export function getToken() {
  * - Otros errores HTTP → Error con mensaje legible y `status`.
  * - Fallo de red/CORS → Error de conexión.
  */
-export async function callApi(path, { method = 'GET', body } = {}, token = getToken()) {
+
+export async function callApi(
+  path,
+  { method = 'GET', body, includeResponse = false } = {},
+  token = getToken()
+) {
+
   const headers = {}
   if (token) headers.Authorization = `Bearer ${token}`
   if (body !== undefined) headers['Content-Type'] = 'application/json'
@@ -62,5 +68,15 @@ export async function callApi(path, { method = 'GET', body } = {}, token = getTo
     throw err
   }
 
+
+  if (includeResponse) {
+    return {
+      data,
+      status: res.status,
+      ok: res.ok
+    }
+  }
+
   return data
 }
+
